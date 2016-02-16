@@ -60,13 +60,44 @@ class FiniteList(NullaryOp):
         return "FiniteList({})".format(", ".join(map(str, self.list)))
 
 
+class UnaryOp(Evaluable):
+    arity = 1
+
+
+class _VectorisedUnaryOp(UnaryOp):
+    def __init__(self, func, child):
+        self.func = func
+        self.child = child
+
+    def evaluate(self, env):
+        child = self.child.evaluate(env)
+
+        if isinstance(child, list):
+            return [self.func(x) for x in child]
+
+        return self.func(child)
+
+    def __repr__(self):
+        return "{}({})".format(self.__class__.__name__, self.child)
+
+
+def VectorisedUnaryOp(name, func):
+    def __init__(self, child):
+        _VectorisedUnaryOp.__init__(self, func, child)
+
+    new_class = type(name, (_VectorisedUnaryOp,), {"__init__": __init__})
+    return new_class
+
+
 class BinaryOp(Evaluable):
     arity = 2
 
 
 class _VectorisedBinaryOp(BinaryOp):
-    def __init__(self, func):
+    def __init__(self, func, left, right):
         self.func = func
+        self.left = left
+        self.right = right
 
     def evaluate(self, env):
         left = self.left.evaluate(env)
@@ -91,8 +122,8 @@ class _VectorisedBinaryOp(BinaryOp):
         elif isinstance(right, list):
             return [self.func(left, y) for y in right]
 
-        else:
-            return self.func(left, right)
+        return self.func(left, right)
+
 
     def __repr__(self):
         return "{}({}, {})".format(self.__class__.__name__, self.left, self.right)
@@ -100,9 +131,7 @@ class _VectorisedBinaryOp(BinaryOp):
 
 def VectorisedBinaryOp(name, func):
     def __init__(self, left, right):
-        _VectorisedBinaryOp.__init__(self, func)
-        self.left = left
-        self.right = right
+        _VectorisedBinaryOp.__init__(self, func, left, right)
 
     new_class = type(name, (_VectorisedBinaryOp,), {"__init__": __init__})
     return new_class
