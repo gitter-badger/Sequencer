@@ -32,8 +32,7 @@ class Stack():
         if self.stack:
             return self.stack.pop()
 
-        result = ImplicitInput(self.env, self.input_number_offset +
-                                 self.env.index_base)
+        result = ImplicitInput(self.input_number_offset + self.env.index_base)
         self.input_number_offset += 1
         return result
 

@@ -22,17 +22,6 @@ class ImplicitInput(NullaryOp):
         return "ImplicitInput({})".format(self.number)
 
 
-class FiniteList(NullaryOp):
-    def __init__(self, list_):
-        self.list = list_
-
-    def evaluate(self, env):
-        return [item.evaluate(env) for item in self.list]
-
-    def __repr__(self):
-        return "FiniteList({})".format(", ".join(map(str, self.list)))
-
-
 class ExplicitInput(NullaryOp):
     """①②③④⑤⑥⑦⑧⑨⑩: input"""
     def __init__(self, number):
@@ -58,6 +47,17 @@ class Numeric(NullaryOp):
 
     def __repr__(self):
         return "Numeric({})".format(self.value)
+
+
+class FiniteList(NullaryOp):
+    def __init__(self, list_):
+        self.list = list_
+
+    def evaluate(self, env):
+        return [item.evaluate(env) for item in self.list]
+
+    def __repr__(self):
+        return "FiniteList({})".format(", ".join(map(str, self.list)))
 
 
 class BinaryOp(Evaluable):

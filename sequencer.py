@@ -21,9 +21,34 @@ def evaluate(code, stack, env):
         elif token in "0123456789":
             stack.push(Numeric(int(token)))
 
+        elif token == "↔":
+            elem2 = stack.pop()
+            elem1 = stack.pop()
+
+            stack.push(elem2)
+            stack.push(elem1)
+
+        elif token == "↷":
+            elem3 = stack.pop()
+            elem2 = stack.pop()
+            elem1 = stack.pop()
+
+            stack.push(elem2)
+            stack.push(elem3)
+            stack.push(elem1)
+
+        elif token == "↶":
+            elem3 = stack.pop()
+            elem2 = stack.pop()
+            elem1 = stack.pop()
+
+            stack.push(elem3)
+            stack.push(elem1)
+            stack.push(elem2)
+
         elif token in OPERATORS:
             op = OPERATORS[token]
-            elems = [stack.pop() for _ in range(op.arity)]
+            elems = [stack.pop() for _ in range(op.arity)][::-1]
             stack.push(op(*elems))
 
     return stack.pop().evaluate(env)
@@ -36,6 +61,6 @@ OPERATORS = {
     "÷": VectorisedBinaryOp("Div", lambda m,n: m/n),
 }
 
-code = parse("723+×")
-env = Environment([[3, 4, 5, 6], [1, 2, 3]])
+code = parse("↷-↔÷")
+env = Environment([1, 2, 4])
 print(evaluate(code, Stack(env), env))
