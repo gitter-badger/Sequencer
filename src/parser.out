@@ -13,62 +13,59 @@ Rule 6     statement -> sequence_assignment
 Rule 7     statement -> expression_statement
 Rule 8     sequence_assignment -> variable ( expression ) = expression
 Rule 9     expression_statement -> expression
-Rule 10    expression -> mul
-Rule 11    mul -> arith_expr mul
-Rule 12    mul -> arith_expr
-Rule 13    arith_expr -> term + arith_expr
-Rule 14    arith_expr -> term - arith_expr
-Rule 15    arith_expr -> term
-Rule 16    term -> factor * term
-Rule 17    term -> factor / term
-Rule 18    term -> factor % term
-Rule 19    term -> factor
-Rule 20    factor -> - factor
-Rule 21    factor -> power
-Rule 22    power -> atom ^ factor
-Rule 23    power -> atom
-Rule 24    atom -> variable
-Rule 25    atom -> number
-Rule 26    atom -> function_call
-Rule 27    variable -> IDENTIFIER
-Rule 28    number -> NUMBER
-Rule 29    function_call -> variable ( expression )
+Rule 10    expression -> arith_expr
+Rule 11    arith_expr -> term + arith_expr
+Rule 12    arith_expr -> term - arith_expr
+Rule 13    arith_expr -> term
+Rule 14    term -> factor * term
+Rule 15    term -> factor / term
+Rule 16    term -> factor % term
+Rule 17    term -> factor
+Rule 18    factor -> - factor
+Rule 19    factor -> power
+Rule 20    power -> atom ^ factor
+Rule 21    power -> atom
+Rule 22    atom -> variable
+Rule 23    atom -> number
+Rule 24    atom -> function_call
+Rule 25    variable -> IDENTIFIER
+Rule 26    number -> NUMBER
+Rule 27    function_call -> variable ( expression )
 
 Terminals, with rules where they appear
 
 
                     : 3
-%                    : 18
-(                    : 8 29
-)                    : 8 29
-*                    : 16
-+                    : 13
--                    : 14 20
-/                    : 17
+%                    : 16
+(                    : 8 27
+)                    : 8 27
+*                    : 14
++                    : 11
+-                    : 12 18
+/                    : 15
 =                    : 8
-IDENTIFIER           : 27
-NUMBER               : 28
-^                    : 22
+IDENTIFIER           : 25
+NUMBER               : 26
+^                    : 20
 error                : 
 
 Nonterminals, with rules where they appear
 
-arith_expr           : 11 12 13 14
-atom                 : 22 23
+arith_expr           : 10 11 12
+atom                 : 20 21
 empty                : 2
-expression           : 8 8 9 29
+expression           : 8 8 9 27
 expression_statement : 7
-factor               : 16 17 18 19 20 22
-function_call        : 26
-mul                  : 10 11
-number               : 25
-power                : 21
+factor               : 14 15 16 17 18 20
+function_call        : 24
+number               : 23
+power                : 19
 program              : 0
 sequence_assignment  : 6
 statement            : 3 4
 statements           : 1 3
-term                 : 13 14 15 16 17 18
-variable             : 8 24 29
+term                 : 11 12 13 14 15 16
+variable             : 8 22 27
 
 Parsing method: LALR
 
@@ -85,140 +82,53 @@ state 0
     (7) statement -> . expression_statement
     (8) sequence_assignment -> . variable ( expression ) = expression
     (9) expression_statement -> . expression
-    (27) variable -> . IDENTIFIER
-    (10) expression -> . mul
-    (11) mul -> . arith_expr mul
-    (12) mul -> . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (25) variable -> . IDENTIFIER
+    (10) expression -> . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
     $end            reduce using rule 5 (empty -> .)
-    IDENTIFIER      shift and go to state 2
-    -               shift and go to state 19
-    NUMBER          shift and go to state 7
+    IDENTIFIER      shift and go to state 17
+    -               shift and go to state 13
+    NUMBER          shift and go to state 9
 
-    sequence_assignment            shift and go to state 3
-    number                         shift and go to state 9
-    variable                       shift and go to state 13
-    statement                      shift and go to state 1
-    mul                            shift and go to state 14
-    statements                     shift and go to state 4
-    empty                          shift and go to state 15
-    expression                     shift and go to state 6
-    expression_statement           shift and go to state 16
-    term                           shift and go to state 8
-    factor                         shift and go to state 18
-    function_call                  shift and go to state 17
-    program                        shift and go to state 12
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 5
-    atom                           shift and go to state 11
+    expression_statement           shift and go to state 7
+    statement                      shift and go to state 11
+    expression                     shift and go to state 2
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 3
+    power                          shift and go to state 6
+    statements                     shift and go to state 5
+    term                           shift and go to state 14
+    number                         shift and go to state 15
+    variable                       shift and go to state 10
+    sequence_assignment            shift and go to state 16
+    atom                           shift and go to state 8
+    function_call                  shift and go to state 4
+    program                        shift and go to state 1
+    empty                          shift and go to state 18
 
 state 1
 
-    (4) statements -> statement .
+    (0) S' -> program .
 
-    
-               reduce using rule 4 (statements -> statement .)
-    $end            reduce using rule 4 (statements -> statement .)
 
 
 state 2
-
-    (27) variable -> IDENTIFIER .
-
-    (               reduce using rule 27 (variable -> IDENTIFIER .)
-    ^               reduce using rule 27 (variable -> IDENTIFIER .)
-    *               reduce using rule 27 (variable -> IDENTIFIER .)
-    /               reduce using rule 27 (variable -> IDENTIFIER .)
-    %               reduce using rule 27 (variable -> IDENTIFIER .)
-    +               reduce using rule 27 (variable -> IDENTIFIER .)
-    -               reduce using rule 27 (variable -> IDENTIFIER .)
-    IDENTIFIER      reduce using rule 27 (variable -> IDENTIFIER .)
-    NUMBER          reduce using rule 27 (variable -> IDENTIFIER .)
-    )               reduce using rule 27 (variable -> IDENTIFIER .)
-    
-               reduce using rule 27 (variable -> IDENTIFIER .)
-    $end            reduce using rule 27 (variable -> IDENTIFIER .)
-
-
-state 3
-
-    (6) statement -> sequence_assignment .
-
-    
-               reduce using rule 6 (statement -> sequence_assignment .)
-    $end            reduce using rule 6 (statement -> sequence_assignment .)
-
-
-state 4
-
-    (1) program -> statements .
-    (3) statements -> statements . 
- statement
-
-    $end            reduce using rule 1 (program -> statements .)
-    
-               shift and go to state 20
-
-
-state 5
-
-    (11) mul -> arith_expr . mul
-    (12) mul -> arith_expr .
-    (11) mul -> . arith_expr mul
-    (12) mul -> . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
-
-    )               reduce using rule 12 (mul -> arith_expr .)
-    
-               reduce using rule 12 (mul -> arith_expr .)
-    $end            reduce using rule 12 (mul -> arith_expr .)
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
-
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    mul                            shift and go to state 22
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 5
-    atom                           shift and go to state 11
-    factor                         shift and go to state 18
-    term                           shift and go to state 8
-
-state 6
 
     (9) expression_statement -> expression .
 
@@ -227,141 +137,59 @@ state 6
     $end            reduce using rule 9 (expression_statement -> expression .)
 
 
+state 3
+
+    (10) expression -> arith_expr .
+
+    )               reduce using rule 10 (expression -> arith_expr .)
+    
+               reduce using rule 10 (expression -> arith_expr .)
+    $end            reduce using rule 10 (expression -> arith_expr .)
+
+
+state 4
+
+    (24) atom -> function_call .
+
+    ^               reduce using rule 24 (atom -> function_call .)
+    *               reduce using rule 24 (atom -> function_call .)
+    /               reduce using rule 24 (atom -> function_call .)
+    %               reduce using rule 24 (atom -> function_call .)
+    +               reduce using rule 24 (atom -> function_call .)
+    -               reduce using rule 24 (atom -> function_call .)
+    
+               reduce using rule 24 (atom -> function_call .)
+    $end            reduce using rule 24 (atom -> function_call .)
+    )               reduce using rule 24 (atom -> function_call .)
+
+
+state 5
+
+    (1) program -> statements .
+    (3) statements -> statements . 
+ statement
+
+    $end            reduce using rule 1 (program -> statements .)
+    
+               shift and go to state 19
+
+
+state 6
+
+    (19) factor -> power .
+
+    *               reduce using rule 19 (factor -> power .)
+    /               reduce using rule 19 (factor -> power .)
+    %               reduce using rule 19 (factor -> power .)
+    +               reduce using rule 19 (factor -> power .)
+    -               reduce using rule 19 (factor -> power .)
+    
+               reduce using rule 19 (factor -> power .)
+    $end            reduce using rule 19 (factor -> power .)
+    )               reduce using rule 19 (factor -> power .)
+
+
 state 7
-
-    (28) number -> NUMBER .
-
-    ^               reduce using rule 28 (number -> NUMBER .)
-    *               reduce using rule 28 (number -> NUMBER .)
-    /               reduce using rule 28 (number -> NUMBER .)
-    %               reduce using rule 28 (number -> NUMBER .)
-    +               reduce using rule 28 (number -> NUMBER .)
-    -               reduce using rule 28 (number -> NUMBER .)
-    IDENTIFIER      reduce using rule 28 (number -> NUMBER .)
-    NUMBER          reduce using rule 28 (number -> NUMBER .)
-    
-               reduce using rule 28 (number -> NUMBER .)
-    $end            reduce using rule 28 (number -> NUMBER .)
-    )               reduce using rule 28 (number -> NUMBER .)
-
-
-state 8
-
-    (13) arith_expr -> term . + arith_expr
-    (14) arith_expr -> term . - arith_expr
-    (15) arith_expr -> term .
-
-  ! shift/reduce conflict for - resolved as shift
-    +               shift and go to state 23
-    -               shift and go to state 24
-    IDENTIFIER      reduce using rule 15 (arith_expr -> term .)
-    NUMBER          reduce using rule 15 (arith_expr -> term .)
-    )               reduce using rule 15 (arith_expr -> term .)
-    
-               reduce using rule 15 (arith_expr -> term .)
-    $end            reduce using rule 15 (arith_expr -> term .)
-
-  ! -               [ reduce using rule 15 (arith_expr -> term .) ]
-
-
-state 9
-
-    (25) atom -> number .
-
-    ^               reduce using rule 25 (atom -> number .)
-    *               reduce using rule 25 (atom -> number .)
-    /               reduce using rule 25 (atom -> number .)
-    %               reduce using rule 25 (atom -> number .)
-    +               reduce using rule 25 (atom -> number .)
-    -               reduce using rule 25 (atom -> number .)
-    IDENTIFIER      reduce using rule 25 (atom -> number .)
-    NUMBER          reduce using rule 25 (atom -> number .)
-    
-               reduce using rule 25 (atom -> number .)
-    $end            reduce using rule 25 (atom -> number .)
-    )               reduce using rule 25 (atom -> number .)
-
-
-state 10
-
-    (21) factor -> power .
-
-    *               reduce using rule 21 (factor -> power .)
-    /               reduce using rule 21 (factor -> power .)
-    %               reduce using rule 21 (factor -> power .)
-    +               reduce using rule 21 (factor -> power .)
-    -               reduce using rule 21 (factor -> power .)
-    IDENTIFIER      reduce using rule 21 (factor -> power .)
-    NUMBER          reduce using rule 21 (factor -> power .)
-    
-               reduce using rule 21 (factor -> power .)
-    $end            reduce using rule 21 (factor -> power .)
-    )               reduce using rule 21 (factor -> power .)
-
-
-state 11
-
-    (22) power -> atom . ^ factor
-    (23) power -> atom .
-
-    ^               shift and go to state 25
-    *               reduce using rule 23 (power -> atom .)
-    /               reduce using rule 23 (power -> atom .)
-    %               reduce using rule 23 (power -> atom .)
-    +               reduce using rule 23 (power -> atom .)
-    -               reduce using rule 23 (power -> atom .)
-    IDENTIFIER      reduce using rule 23 (power -> atom .)
-    NUMBER          reduce using rule 23 (power -> atom .)
-    
-               reduce using rule 23 (power -> atom .)
-    $end            reduce using rule 23 (power -> atom .)
-    )               reduce using rule 23 (power -> atom .)
-
-
-state 12
-
-    (0) S' -> program .
-
-
-
-state 13
-
-    (8) sequence_assignment -> variable . ( expression ) = expression
-    (24) atom -> variable .
-    (29) function_call -> variable . ( expression )
-
-    (               shift and go to state 26
-    ^               reduce using rule 24 (atom -> variable .)
-    *               reduce using rule 24 (atom -> variable .)
-    /               reduce using rule 24 (atom -> variable .)
-    %               reduce using rule 24 (atom -> variable .)
-    +               reduce using rule 24 (atom -> variable .)
-    -               reduce using rule 24 (atom -> variable .)
-    IDENTIFIER      reduce using rule 24 (atom -> variable .)
-    NUMBER          reduce using rule 24 (atom -> variable .)
-    
-               reduce using rule 24 (atom -> variable .)
-    $end            reduce using rule 24 (atom -> variable .)
-
-
-state 14
-
-    (10) expression -> mul .
-
-    
-               reduce using rule 10 (expression -> mul .)
-    $end            reduce using rule 10 (expression -> mul .)
-    )               reduce using rule 10 (expression -> mul .)
-
-
-state 15
-
-    (2) program -> empty .
-
-    $end            reduce using rule 2 (program -> empty .)
-
-
-state 16
 
     (7) statement -> expression_statement .
 
@@ -370,70 +198,173 @@ state 16
     $end            reduce using rule 7 (statement -> expression_statement .)
 
 
+state 8
+
+    (20) power -> atom . ^ factor
+    (21) power -> atom .
+
+    ^               shift and go to state 20
+    *               reduce using rule 21 (power -> atom .)
+    /               reduce using rule 21 (power -> atom .)
+    %               reduce using rule 21 (power -> atom .)
+    +               reduce using rule 21 (power -> atom .)
+    -               reduce using rule 21 (power -> atom .)
+    
+               reduce using rule 21 (power -> atom .)
+    $end            reduce using rule 21 (power -> atom .)
+    )               reduce using rule 21 (power -> atom .)
+
+
+state 9
+
+    (26) number -> NUMBER .
+
+    ^               reduce using rule 26 (number -> NUMBER .)
+    *               reduce using rule 26 (number -> NUMBER .)
+    /               reduce using rule 26 (number -> NUMBER .)
+    %               reduce using rule 26 (number -> NUMBER .)
+    +               reduce using rule 26 (number -> NUMBER .)
+    -               reduce using rule 26 (number -> NUMBER .)
+    
+               reduce using rule 26 (number -> NUMBER .)
+    $end            reduce using rule 26 (number -> NUMBER .)
+    )               reduce using rule 26 (number -> NUMBER .)
+
+
+state 10
+
+    (8) sequence_assignment -> variable . ( expression ) = expression
+    (22) atom -> variable .
+    (27) function_call -> variable . ( expression )
+
+    (               shift and go to state 21
+    ^               reduce using rule 22 (atom -> variable .)
+    *               reduce using rule 22 (atom -> variable .)
+    /               reduce using rule 22 (atom -> variable .)
+    %               reduce using rule 22 (atom -> variable .)
+    +               reduce using rule 22 (atom -> variable .)
+    -               reduce using rule 22 (atom -> variable .)
+    
+               reduce using rule 22 (atom -> variable .)
+    $end            reduce using rule 22 (atom -> variable .)
+
+
+state 11
+
+    (4) statements -> statement .
+
+    
+               reduce using rule 4 (statements -> statement .)
+    $end            reduce using rule 4 (statements -> statement .)
+
+
+state 12
+
+    (14) term -> factor . * term
+    (15) term -> factor . / term
+    (16) term -> factor . % term
+    (17) term -> factor .
+
+    *               shift and go to state 22
+    /               shift and go to state 24
+    %               shift and go to state 23
+    +               reduce using rule 17 (term -> factor .)
+    -               reduce using rule 17 (term -> factor .)
+    )               reduce using rule 17 (term -> factor .)
+    
+               reduce using rule 17 (term -> factor .)
+    $end            reduce using rule 17 (term -> factor .)
+
+
+state 13
+
+    (18) factor -> - . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
+
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
+
+    atom                           shift and go to state 8
+    factor                         shift and go to state 25
+    function_call                  shift and go to state 4
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
+
+state 14
+
+    (11) arith_expr -> term . + arith_expr
+    (12) arith_expr -> term . - arith_expr
+    (13) arith_expr -> term .
+
+    +               shift and go to state 28
+    -               shift and go to state 27
+    
+               reduce using rule 13 (arith_expr -> term .)
+    $end            reduce using rule 13 (arith_expr -> term .)
+    )               reduce using rule 13 (arith_expr -> term .)
+
+
+state 15
+
+    (23) atom -> number .
+
+    ^               reduce using rule 23 (atom -> number .)
+    *               reduce using rule 23 (atom -> number .)
+    /               reduce using rule 23 (atom -> number .)
+    %               reduce using rule 23 (atom -> number .)
+    +               reduce using rule 23 (atom -> number .)
+    -               reduce using rule 23 (atom -> number .)
+    
+               reduce using rule 23 (atom -> number .)
+    $end            reduce using rule 23 (atom -> number .)
+    )               reduce using rule 23 (atom -> number .)
+
+
+state 16
+
+    (6) statement -> sequence_assignment .
+
+    
+               reduce using rule 6 (statement -> sequence_assignment .)
+    $end            reduce using rule 6 (statement -> sequence_assignment .)
+
+
 state 17
 
-    (26) atom -> function_call .
+    (25) variable -> IDENTIFIER .
 
-    ^               reduce using rule 26 (atom -> function_call .)
-    *               reduce using rule 26 (atom -> function_call .)
-    /               reduce using rule 26 (atom -> function_call .)
-    %               reduce using rule 26 (atom -> function_call .)
-    +               reduce using rule 26 (atom -> function_call .)
-    -               reduce using rule 26 (atom -> function_call .)
-    IDENTIFIER      reduce using rule 26 (atom -> function_call .)
-    NUMBER          reduce using rule 26 (atom -> function_call .)
+    (               reduce using rule 25 (variable -> IDENTIFIER .)
+    ^               reduce using rule 25 (variable -> IDENTIFIER .)
+    *               reduce using rule 25 (variable -> IDENTIFIER .)
+    /               reduce using rule 25 (variable -> IDENTIFIER .)
+    %               reduce using rule 25 (variable -> IDENTIFIER .)
+    +               reduce using rule 25 (variable -> IDENTIFIER .)
+    -               reduce using rule 25 (variable -> IDENTIFIER .)
     
-               reduce using rule 26 (atom -> function_call .)
-    $end            reduce using rule 26 (atom -> function_call .)
-    )               reduce using rule 26 (atom -> function_call .)
+               reduce using rule 25 (variable -> IDENTIFIER .)
+    $end            reduce using rule 25 (variable -> IDENTIFIER .)
+    )               reduce using rule 25 (variable -> IDENTIFIER .)
 
 
 state 18
 
-    (16) term -> factor . * term
-    (17) term -> factor . / term
-    (18) term -> factor . % term
-    (19) term -> factor .
+    (2) program -> empty .
 
-    *               shift and go to state 28
-    /               shift and go to state 29
-    %               shift and go to state 27
-    +               reduce using rule 19 (term -> factor .)
-    -               reduce using rule 19 (term -> factor .)
-    IDENTIFIER      reduce using rule 19 (term -> factor .)
-    NUMBER          reduce using rule 19 (term -> factor .)
-    
-               reduce using rule 19 (term -> factor .)
-    $end            reduce using rule 19 (term -> factor .)
-    )               reduce using rule 19 (term -> factor .)
+    $end            reduce using rule 2 (program -> empty .)
 
 
 state 19
-
-    (20) factor -> - . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
-
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
-
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    factor                         shift and go to state 30
-    number                         shift and go to state 9
-    atom                           shift and go to state 11
-
-state 20
 
     (3) statements -> statements 
  . statement
@@ -441,316 +372,296 @@ state 20
     (7) statement -> . expression_statement
     (8) sequence_assignment -> . variable ( expression ) = expression
     (9) expression_statement -> . expression
-    (27) variable -> . IDENTIFIER
-    (10) expression -> . mul
-    (11) mul -> . arith_expr mul
-    (12) mul -> . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (25) variable -> . IDENTIFIER
+    (10) expression -> . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    IDENTIFIER      shift and go to state 2
-    -               shift and go to state 19
-    NUMBER          shift and go to state 7
+    IDENTIFIER      shift and go to state 17
+    -               shift and go to state 13
+    NUMBER          shift and go to state 9
 
-    sequence_assignment            shift and go to state 3
-    number                         shift and go to state 9
-    variable                       shift and go to state 13
-    statement                      shift and go to state 31
-    mul                            shift and go to state 14
-    arith_expr                     shift and go to state 5
-    expression                     shift and go to state 6
-    expression_statement           shift and go to state 16
-    term                           shift and go to state 8
-    function_call                  shift and go to state 17
-    power                          shift and go to state 10
-    factor                         shift and go to state 18
-    atom                           shift and go to state 11
+    expression_statement           shift and go to state 7
+    statement                      shift and go to state 29
+    expression                     shift and go to state 2
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 3
+    term                           shift and go to state 14
+    power                          shift and go to state 6
+    number                         shift and go to state 15
+    sequence_assignment            shift and go to state 16
+    atom                           shift and go to state 8
+    function_call                  shift and go to state 4
+    variable                       shift and go to state 10
+
+state 20
+
+    (20) power -> atom ^ . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
+
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
+
+    atom                           shift and go to state 8
+    factor                         shift and go to state 30
+    function_call                  shift and go to state 4
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 21
 
-    (24) atom -> variable .
-    (29) function_call -> variable . ( expression )
+    (8) sequence_assignment -> variable ( . expression ) = expression
+    (27) function_call -> variable ( . expression )
+    (10) expression -> . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    ^               reduce using rule 24 (atom -> variable .)
-    *               reduce using rule 24 (atom -> variable .)
-    /               reduce using rule 24 (atom -> variable .)
-    %               reduce using rule 24 (atom -> variable .)
-    +               reduce using rule 24 (atom -> variable .)
-    -               reduce using rule 24 (atom -> variable .)
-    IDENTIFIER      reduce using rule 24 (atom -> variable .)
-    NUMBER          reduce using rule 24 (atom -> variable .)
-    
-               reduce using rule 24 (atom -> variable .)
-    $end            reduce using rule 24 (atom -> variable .)
-    )               reduce using rule 24 (atom -> variable .)
-    (               shift and go to state 32
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    expression                     shift and go to state 31
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 3
+    power                          shift and go to state 6
+    term                           shift and go to state 14
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 22
 
-    (11) mul -> arith_expr mul .
+    (14) term -> factor * . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    )               reduce using rule 11 (mul -> arith_expr mul .)
-    
-               reduce using rule 11 (mul -> arith_expr mul .)
-    $end            reduce using rule 11 (mul -> arith_expr mul .)
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    factor                         shift and go to state 12
+    term                           shift and go to state 32
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 23
 
-    (13) arith_expr -> term + . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (16) term -> factor % . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 33
-    term                           shift and go to state 8
-    factor                         shift and go to state 18
-    atom                           shift and go to state 11
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    factor                         shift and go to state 12
+    term                           shift and go to state 33
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 24
 
-    (14) arith_expr -> term - . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (15) term -> factor / . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 34
-    term                           shift and go to state 8
-    factor                         shift and go to state 18
-    atom                           shift and go to state 11
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    factor                         shift and go to state 12
+    term                           shift and go to state 34
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 25
 
-    (22) power -> atom ^ . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (18) factor -> - factor .
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    *               reduce using rule 18 (factor -> - factor .)
+    /               reduce using rule 18 (factor -> - factor .)
+    %               reduce using rule 18 (factor -> - factor .)
+    +               reduce using rule 18 (factor -> - factor .)
+    -               reduce using rule 18 (factor -> - factor .)
+    
+               reduce using rule 18 (factor -> - factor .)
+    $end            reduce using rule 18 (factor -> - factor .)
+    )               reduce using rule 18 (factor -> - factor .)
 
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    factor                         shift and go to state 35
-    number                         shift and go to state 9
-    atom                           shift and go to state 11
 
 state 26
 
-    (8) sequence_assignment -> variable ( . expression ) = expression
-    (29) function_call -> variable ( . expression )
-    (10) expression -> . mul
-    (11) mul -> . arith_expr mul
-    (12) mul -> . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (22) atom -> variable .
+    (27) function_call -> variable . ( expression )
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    ^               reduce using rule 22 (atom -> variable .)
+    *               reduce using rule 22 (atom -> variable .)
+    /               reduce using rule 22 (atom -> variable .)
+    %               reduce using rule 22 (atom -> variable .)
+    +               reduce using rule 22 (atom -> variable .)
+    -               reduce using rule 22 (atom -> variable .)
+    
+               reduce using rule 22 (atom -> variable .)
+    $end            reduce using rule 22 (atom -> variable .)
+    )               reduce using rule 22 (atom -> variable .)
+    (               shift and go to state 35
 
-    atom                           shift and go to state 11
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    mul                            shift and go to state 14
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 5
-    expression                     shift and go to state 36
-    factor                         shift and go to state 18
-    term                           shift and go to state 8
 
 state 27
 
-    (18) term -> factor % . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (12) arith_expr -> term - . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    factor                         shift and go to state 18
-    term                           shift and go to state 37
-    atom                           shift and go to state 11
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 36
+    term                           shift and go to state 14
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 28
 
-    (16) term -> factor * . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (11) arith_expr -> term + . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    factor                         shift and go to state 18
-    term                           shift and go to state 38
-    atom                           shift and go to state 11
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 37
+    term                           shift and go to state 14
+    power                          shift and go to state 6
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 29
-
-    (17) term -> factor / . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
-
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
-
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    power                          shift and go to state 10
-    factor                         shift and go to state 18
-    term                           shift and go to state 39
-    atom                           shift and go to state 11
-
-state 30
-
-    (20) factor -> - factor .
-
-    *               reduce using rule 20 (factor -> - factor .)
-    /               reduce using rule 20 (factor -> - factor .)
-    %               reduce using rule 20 (factor -> - factor .)
-    +               reduce using rule 20 (factor -> - factor .)
-    -               reduce using rule 20 (factor -> - factor .)
-    IDENTIFIER      reduce using rule 20 (factor -> - factor .)
-    NUMBER          reduce using rule 20 (factor -> - factor .)
-    
-               reduce using rule 20 (factor -> - factor .)
-    $end            reduce using rule 20 (factor -> - factor .)
-    )               reduce using rule 20 (factor -> - factor .)
-
-
-state 31
 
     (3) statements -> statements 
  statement .
@@ -762,222 +673,198 @@ state 31
  statement .)
 
 
+state 30
+
+    (20) power -> atom ^ factor .
+
+    *               reduce using rule 20 (power -> atom ^ factor .)
+    /               reduce using rule 20 (power -> atom ^ factor .)
+    %               reduce using rule 20 (power -> atom ^ factor .)
+    +               reduce using rule 20 (power -> atom ^ factor .)
+    -               reduce using rule 20 (power -> atom ^ factor .)
+    
+               reduce using rule 20 (power -> atom ^ factor .)
+    $end            reduce using rule 20 (power -> atom ^ factor .)
+    )               reduce using rule 20 (power -> atom ^ factor .)
+
+
+state 31
+
+    (8) sequence_assignment -> variable ( expression . ) = expression
+    (27) function_call -> variable ( expression . )
+
+    )               shift and go to state 38
+
+
 state 32
 
-    (29) function_call -> variable ( . expression )
-    (10) expression -> . mul
-    (11) mul -> . arith_expr mul
-    (12) mul -> . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
+    (14) term -> factor * term .
 
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
+    +               reduce using rule 14 (term -> factor * term .)
+    -               reduce using rule 14 (term -> factor * term .)
+    )               reduce using rule 14 (term -> factor * term .)
+    
+               reduce using rule 14 (term -> factor * term .)
+    $end            reduce using rule 14 (term -> factor * term .)
 
-    atom                           shift and go to state 11
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    mul                            shift and go to state 14
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 5
-    expression                     shift and go to state 40
-    factor                         shift and go to state 18
-    term                           shift and go to state 8
 
 state 33
 
-    (13) arith_expr -> term + arith_expr .
+    (16) term -> factor % term .
 
-    -               reduce using rule 13 (arith_expr -> term + arith_expr .)
-    IDENTIFIER      reduce using rule 13 (arith_expr -> term + arith_expr .)
-    NUMBER          reduce using rule 13 (arith_expr -> term + arith_expr .)
-    )               reduce using rule 13 (arith_expr -> term + arith_expr .)
+    +               reduce using rule 16 (term -> factor % term .)
+    -               reduce using rule 16 (term -> factor % term .)
+    )               reduce using rule 16 (term -> factor % term .)
     
-               reduce using rule 13 (arith_expr -> term + arith_expr .)
-    $end            reduce using rule 13 (arith_expr -> term + arith_expr .)
+               reduce using rule 16 (term -> factor % term .)
+    $end            reduce using rule 16 (term -> factor % term .)
 
 
 state 34
 
-    (14) arith_expr -> term - arith_expr .
+    (15) term -> factor / term .
 
-    -               reduce using rule 14 (arith_expr -> term - arith_expr .)
-    IDENTIFIER      reduce using rule 14 (arith_expr -> term - arith_expr .)
-    NUMBER          reduce using rule 14 (arith_expr -> term - arith_expr .)
-    )               reduce using rule 14 (arith_expr -> term - arith_expr .)
+    +               reduce using rule 15 (term -> factor / term .)
+    -               reduce using rule 15 (term -> factor / term .)
+    )               reduce using rule 15 (term -> factor / term .)
     
-               reduce using rule 14 (arith_expr -> term - arith_expr .)
-    $end            reduce using rule 14 (arith_expr -> term - arith_expr .)
+               reduce using rule 15 (term -> factor / term .)
+    $end            reduce using rule 15 (term -> factor / term .)
 
 
 state 35
 
-    (22) power -> atom ^ factor .
+    (27) function_call -> variable ( . expression )
+    (10) expression -> . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    *               reduce using rule 22 (power -> atom ^ factor .)
-    /               reduce using rule 22 (power -> atom ^ factor .)
-    %               reduce using rule 22 (power -> atom ^ factor .)
-    +               reduce using rule 22 (power -> atom ^ factor .)
-    -               reduce using rule 22 (power -> atom ^ factor .)
-    IDENTIFIER      reduce using rule 22 (power -> atom ^ factor .)
-    NUMBER          reduce using rule 22 (power -> atom ^ factor .)
-    
-               reduce using rule 22 (power -> atom ^ factor .)
-    $end            reduce using rule 22 (power -> atom ^ factor .)
-    )               reduce using rule 22 (power -> atom ^ factor .)
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    expression                     shift and go to state 39
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 3
+    power                          shift and go to state 6
+    term                           shift and go to state 14
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 36
 
-    (8) sequence_assignment -> variable ( expression . ) = expression
-    (29) function_call -> variable ( expression . )
+    (12) arith_expr -> term - arith_expr .
 
-    )               shift and go to state 41
+    
+               reduce using rule 12 (arith_expr -> term - arith_expr .)
+    $end            reduce using rule 12 (arith_expr -> term - arith_expr .)
+    )               reduce using rule 12 (arith_expr -> term - arith_expr .)
 
 
 state 37
 
-    (18) term -> factor % term .
+    (11) arith_expr -> term + arith_expr .
 
-    +               reduce using rule 18 (term -> factor % term .)
-    -               reduce using rule 18 (term -> factor % term .)
-    IDENTIFIER      reduce using rule 18 (term -> factor % term .)
-    NUMBER          reduce using rule 18 (term -> factor % term .)
     
-               reduce using rule 18 (term -> factor % term .)
-    $end            reduce using rule 18 (term -> factor % term .)
-    )               reduce using rule 18 (term -> factor % term .)
+               reduce using rule 11 (arith_expr -> term + arith_expr .)
+    $end            reduce using rule 11 (arith_expr -> term + arith_expr .)
+    )               reduce using rule 11 (arith_expr -> term + arith_expr .)
 
 
 state 38
 
-    (16) term -> factor * term .
+    (8) sequence_assignment -> variable ( expression ) . = expression
+    (27) function_call -> variable ( expression ) .
 
-    +               reduce using rule 16 (term -> factor * term .)
-    -               reduce using rule 16 (term -> factor * term .)
-    IDENTIFIER      reduce using rule 16 (term -> factor * term .)
-    NUMBER          reduce using rule 16 (term -> factor * term .)
+    =               shift and go to state 40
+    ^               reduce using rule 27 (function_call -> variable ( expression ) .)
+    *               reduce using rule 27 (function_call -> variable ( expression ) .)
+    /               reduce using rule 27 (function_call -> variable ( expression ) .)
+    %               reduce using rule 27 (function_call -> variable ( expression ) .)
+    +               reduce using rule 27 (function_call -> variable ( expression ) .)
+    -               reduce using rule 27 (function_call -> variable ( expression ) .)
     
-               reduce using rule 16 (term -> factor * term .)
-    $end            reduce using rule 16 (term -> factor * term .)
-    )               reduce using rule 16 (term -> factor * term .)
+               reduce using rule 27 (function_call -> variable ( expression ) .)
+    $end            reduce using rule 27 (function_call -> variable ( expression ) .)
 
 
 state 39
 
-    (17) term -> factor / term .
+    (27) function_call -> variable ( expression . )
 
-    +               reduce using rule 17 (term -> factor / term .)
-    -               reduce using rule 17 (term -> factor / term .)
-    IDENTIFIER      reduce using rule 17 (term -> factor / term .)
-    NUMBER          reduce using rule 17 (term -> factor / term .)
-    
-               reduce using rule 17 (term -> factor / term .)
-    $end            reduce using rule 17 (term -> factor / term .)
-    )               reduce using rule 17 (term -> factor / term .)
+    )               shift and go to state 41
 
 
 state 40
 
-    (29) function_call -> variable ( expression . )
+    (8) sequence_assignment -> variable ( expression ) = . expression
+    (10) expression -> . arith_expr
+    (11) arith_expr -> . term + arith_expr
+    (12) arith_expr -> . term - arith_expr
+    (13) arith_expr -> . term
+    (14) term -> . factor * term
+    (15) term -> . factor / term
+    (16) term -> . factor % term
+    (17) term -> . factor
+    (18) factor -> . - factor
+    (19) factor -> . power
+    (20) power -> . atom ^ factor
+    (21) power -> . atom
+    (22) atom -> . variable
+    (23) atom -> . number
+    (24) atom -> . function_call
+    (25) variable -> . IDENTIFIER
+    (26) number -> . NUMBER
+    (27) function_call -> . variable ( expression )
 
-    )               shift and go to state 42
+    -               shift and go to state 13
+    IDENTIFIER      shift and go to state 17
+    NUMBER          shift and go to state 9
 
+    function_call                  shift and go to state 4
+    atom                           shift and go to state 8
+    expression                     shift and go to state 42
+    factor                         shift and go to state 12
+    arith_expr                     shift and go to state 3
+    power                          shift and go to state 6
+    term                           shift and go to state 14
+    variable                       shift and go to state 26
+    number                         shift and go to state 15
 
 state 41
 
-    (8) sequence_assignment -> variable ( expression ) . = expression
-    (29) function_call -> variable ( expression ) .
+    (27) function_call -> variable ( expression ) .
 
-    =               shift and go to state 43
-    ^               reduce using rule 29 (function_call -> variable ( expression ) .)
-    *               reduce using rule 29 (function_call -> variable ( expression ) .)
-    /               reduce using rule 29 (function_call -> variable ( expression ) .)
-    %               reduce using rule 29 (function_call -> variable ( expression ) .)
-    +               reduce using rule 29 (function_call -> variable ( expression ) .)
-    -               reduce using rule 29 (function_call -> variable ( expression ) .)
-    IDENTIFIER      reduce using rule 29 (function_call -> variable ( expression ) .)
-    NUMBER          reduce using rule 29 (function_call -> variable ( expression ) .)
+    ^               reduce using rule 27 (function_call -> variable ( expression ) .)
+    *               reduce using rule 27 (function_call -> variable ( expression ) .)
+    /               reduce using rule 27 (function_call -> variable ( expression ) .)
+    %               reduce using rule 27 (function_call -> variable ( expression ) .)
+    +               reduce using rule 27 (function_call -> variable ( expression ) .)
+    -               reduce using rule 27 (function_call -> variable ( expression ) .)
     
-               reduce using rule 29 (function_call -> variable ( expression ) .)
-    $end            reduce using rule 29 (function_call -> variable ( expression ) .)
+               reduce using rule 27 (function_call -> variable ( expression ) .)
+    $end            reduce using rule 27 (function_call -> variable ( expression ) .)
+    )               reduce using rule 27 (function_call -> variable ( expression ) .)
 
 
 state 42
-
-    (29) function_call -> variable ( expression ) .
-
-    ^               reduce using rule 29 (function_call -> variable ( expression ) .)
-    *               reduce using rule 29 (function_call -> variable ( expression ) .)
-    /               reduce using rule 29 (function_call -> variable ( expression ) .)
-    %               reduce using rule 29 (function_call -> variable ( expression ) .)
-    +               reduce using rule 29 (function_call -> variable ( expression ) .)
-    -               reduce using rule 29 (function_call -> variable ( expression ) .)
-    IDENTIFIER      reduce using rule 29 (function_call -> variable ( expression ) .)
-    NUMBER          reduce using rule 29 (function_call -> variable ( expression ) .)
-    
-               reduce using rule 29 (function_call -> variable ( expression ) .)
-    $end            reduce using rule 29 (function_call -> variable ( expression ) .)
-    )               reduce using rule 29 (function_call -> variable ( expression ) .)
-
-
-state 43
-
-    (8) sequence_assignment -> variable ( expression ) = . expression
-    (10) expression -> . mul
-    (11) mul -> . arith_expr mul
-    (12) mul -> . arith_expr
-    (13) arith_expr -> . term + arith_expr
-    (14) arith_expr -> . term - arith_expr
-    (15) arith_expr -> . term
-    (16) term -> . factor * term
-    (17) term -> . factor / term
-    (18) term -> . factor % term
-    (19) term -> . factor
-    (20) factor -> . - factor
-    (21) factor -> . power
-    (22) power -> . atom ^ factor
-    (23) power -> . atom
-    (24) atom -> . variable
-    (25) atom -> . number
-    (26) atom -> . function_call
-    (27) variable -> . IDENTIFIER
-    (28) number -> . NUMBER
-    (29) function_call -> . variable ( expression )
-
-    -               shift and go to state 19
-    IDENTIFIER      shift and go to state 2
-    NUMBER          shift and go to state 7
-
-    atom                           shift and go to state 11
-    number                         shift and go to state 9
-    function_call                  shift and go to state 17
-    variable                       shift and go to state 21
-    mul                            shift and go to state 14
-    power                          shift and go to state 10
-    arith_expr                     shift and go to state 5
-    expression                     shift and go to state 44
-    factor                         shift and go to state 18
-    term                           shift and go to state 8
-
-state 44
 
     (8) sequence_assignment -> variable ( expression ) = expression .
 
@@ -985,7 +872,3 @@ state 44
                reduce using rule 8 (sequence_assignment -> variable ( expression ) = expression .)
     $end            reduce using rule 8 (sequence_assignment -> variable ( expression ) = expression .)
 
-WARNING: 
-WARNING: Conflicts:
-WARNING: 
-WARNING: shift/reduce conflict for - in state 8 resolved as shift
