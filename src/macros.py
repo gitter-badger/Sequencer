@@ -9,11 +9,11 @@ def s_print(env, args):
             i = arg.offset
 
             while True:
-                print(normalise_output(arg(env, [i])))
+                print(normalise_output(arg(env, [i])), flush=True)
                 i += 1
 
         else:
-            print(normalise_output(arg))
+            print(normalise_output(arg), flush=True)
 
 
 def normalise_output(elem):
