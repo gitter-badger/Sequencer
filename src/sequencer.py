@@ -1,8 +1,11 @@
 import argparse
 import codecs
+import sys
 
 from s_parser import Parser
 from core import *
+
+sys.setrecursionlimit(100000)
 
 class Sequencer():
     def __init__(self, code):
@@ -12,7 +15,10 @@ class Sequencer():
         env = Environment()
 
         for statement in self.code:
-            statement.execute(env)
+            try:
+                statement.execute(env)
+            except KeyboardInterrupt:
+                print("^C", file=sys.stderr)
 
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
