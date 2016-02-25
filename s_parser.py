@@ -60,8 +60,16 @@ class Parser():
         p[0] = ExpressionStatement(p[1])
 
     def p_expression(self, p):
-        """expression : arith_expr"""
+        """expression : mul"""
         p[0] = p[1]
+
+    def p_mul(self, p):
+        """mul : arith_expr mul
+               | arith_expr"""
+        if len(p) == 2:
+            p[0] = p[1]
+        else:
+            p[0] = BinaryOp(p[1], p[2], lambda x,y: x*y)
 
     def p_arith_expr(self, p):
         """arith_expr : term '+' arith_expr
@@ -78,18 +86,13 @@ class Parser():
         """term : factor '*' term
                 | factor '/' term
                 | factor '%' term
-                | factor term
                 | factor"""
         if len(p) == 2:
             p[0] = p[1]
-        # TODO: Fix ambiguous grammar.
-        elif len(p) == 3:
-            p[0] = BinaryOp(p[1], p[2], lambda x,y: x*y)
         elif p[2] == '*':
             p[0] = BinaryOp(p[1], p[3], lambda x,y: x*y)
         elif p[2] == '/':
             p[0] = BinaryOp(p[1], p[3], lambda x,y: x/y)
-
 
     def p_factor(self, p):
         """factor : '-' factor

@@ -53,25 +53,47 @@ class Sequence():
         self.pattern_to_assignment.append((pattern, assignment))
 
 
-class Environment(dict):
+class Environment():
     def __init__(self):
-        super().__init__({
+        self.globals = {
             'print': macros.s_print
-        })
+        }
 
+        self.locals = [{}]
 
-    def get_sequence(self, variable):
-        if variable.identifier in self:
-            elem = self[variable.identifier]
+    def __contains__(self, identifier):
+        return self.has(identifier)
 
-            if isinstance(elem, Sequence):
-                return elem
-            else:
-                raise TypeError("'{}' is not of type 'Sequence'".format(identifier))
+    def __getitem__(self, identifier):
+        return self.get(identifier)
 
-        else:
-            self[variable.identifier] = Sequence()
-            return self[variable.identifier]
+    def __repr__(self):
+        # For debugging purposes.
+        return repr(self.globals) + "\n" + repr(self.locals)
+
+    def get(self, identifier):
+        if identifier in self.locals[-1]:
+            return self.locals[-1][identifier]
+
+        if identifier in self.globals:
+            return self.globals[identifier]
+
+        exit("{} not in scope".format(identifier))
+
+    def has(self, identifier):
+        return identifier in self.locals[-1] or identifier in self.globals
+
+    def put_global(self, identifier, item):
+        self.globals[identifier] = item
+
+    def put_local(self, identifier, item):
+        self.locals[-1][identifier] = item
+
+    def enter_scope(self):
+        self.locals.append({})
+
+    def exit_scope(self):
+        self.locals.pop()
 
 
 # TODO: Fix circular dependency.

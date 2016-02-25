@@ -14,13 +14,21 @@ class Statement():
 
 
 class SequenceAssignment(Statement):
-    def __init__(self, identifier, pattern, assignment):
-        self.identifier = identifier
+    def __init__(self, variable, pattern, assignment):
+        self.identifier = variable.identifier
         self.pattern = pattern
         self.assignment = assignment
 
     def execute(self, env):
-        sequence = env.get_sequence(self.identifier)
+        if self.identifier in env:
+            sequence = env.get(self.identifier)
+
+            if not isinstance(sequence, Sequence):
+                exit("{} is not a sequence".format(self.identifier))
+        else:
+            sequence = Sequence()
+            env.put_local(self.identifier, sequence)
+
         sequence.add_pattern(self.pattern, self.assignment)
 
 
@@ -81,6 +89,5 @@ class FunctionCall(Expression):
         if isinstance(caller, sympy.Symbol):
             exit(NOT_DEFINED.format(self.identifier))
 
-        else:
-            args = [x.evaluate(env) for x in self.args]
-            return caller(env, args)
+        args = [x.evaluate(env) for x in self.args]
+        return caller(env, args)
