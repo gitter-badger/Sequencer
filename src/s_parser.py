@@ -10,7 +10,7 @@ class Lexer():
         self.lexer = lex.lex(module=self)
         
     tokens = ("IDENTIFIER", "NUMBER")
-    literals = list("=()+-*/^\n")
+    literals = list("=()+-*/^\n;")
 
     t_IDENTIFIER = r"[a-zA-Z_]\w*"
     t_NUMBER = r"[1-9][0-9]*|0"
@@ -35,6 +35,7 @@ class Parser():
 
     def p_statements(self, p):
         r"""statements : statements '\n' statement
+                       | statements ';' statement
                        | statement"""
         if len(p) == 2:
             p[0] = [p[1]]

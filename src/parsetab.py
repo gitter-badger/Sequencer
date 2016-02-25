@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = b'\x14\xd0\x80\xae\xa4\x17\xe8\xd4]c\xa3E\xb6\xbbp\x8f'
+_lr_signature = b'\xd11`\x87\xdf\xae\x9d(\x0e\xe4\xe9h\x92\xd5h\xf2'
     
-_lr_action_items = {'NUMBER':([0,13,19,20,21,22,23,24,27,28,35,40,],[9,9,9,9,9,9,9,9,9,9,9,9,]),'^':([4,8,9,10,15,17,26,38,41,],[-24,20,-26,-22,-23,-25,-22,-27,-27,]),'-':([0,4,6,8,9,10,12,13,14,15,17,19,20,21,22,23,24,25,26,27,28,30,32,33,34,35,38,40,41,],[13,-24,-19,-21,-26,-22,-17,13,27,-23,-25,13,13,13,13,13,13,-18,-22,13,13,-20,-14,-16,-15,13,-27,13,-27,]),'(':([10,17,26,],[21,-25,35,]),'+':([4,6,8,9,10,12,14,15,17,25,26,30,32,33,34,38,41,],[-24,-19,-21,-26,-22,-17,28,-23,-25,-18,-22,-20,-14,-16,-15,-27,-27,]),'=':([38,],[40,]),'IDENTIFIER':([0,13,19,20,21,22,23,24,27,28,35,40,],[17,17,17,17,17,17,17,17,17,17,17,17,]),'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,25,26,29,30,32,33,34,36,37,38,41,42,],[-5,0,-9,-10,-24,-1,-19,-7,-21,-26,-22,-4,-17,-13,-23,-6,-25,-2,-18,-22,-3,-20,-14,-16,-15,-12,-11,-27,-27,-8,]),')':([3,4,6,8,9,12,14,15,17,25,26,30,31,32,33,34,36,37,39,41,],[-10,-24,-19,-21,-26,-17,-13,-23,-25,-18,-22,-20,38,-14,-16,-15,-12,-11,41,-27,]),'*':([4,6,8,9,10,12,15,17,25,26,30,38,41,],[-24,-19,-21,-26,-22,22,-23,-25,-18,-22,-20,-27,-27,]),'\n':([2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,25,26,29,30,32,33,34,36,37,38,41,42,],[-9,-10,-24,19,-19,-7,-21,-26,-22,-4,-17,-13,-23,-6,-25,-18,-22,-3,-20,-14,-16,-15,-12,-11,-27,-27,-8,]),'%':([4,6,8,9,10,12,15,17,25,26,30,38,41,],[-24,-19,-21,-26,-22,23,-23,-25,-18,-22,-20,-27,-27,]),'/':([4,6,8,9,10,12,15,17,25,26,30,38,41,],[-24,-19,-21,-26,-22,24,-23,-25,-18,-22,-20,-27,-27,]),}
+_lr_action_items = {'NUMBER':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[1,1,1,1,1,1,1,1,1,1,1,1,1,]),'+':([1,2,3,5,10,12,13,16,18,19,20,31,32,33,34,41,42,],[-27,-24,-20,-26,-18,-22,25,-25,-23,-19,-23,-17,-15,-16,-21,-28,-28,]),')':([1,2,3,5,10,12,13,15,16,19,20,31,32,33,34,35,36,39,40,42,],[-27,-24,-20,-26,-18,-22,-14,-11,-25,-19,-23,-17,-15,-16,-21,-12,-13,41,42,-28,]),'IDENTIFIER':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[5,5,5,5,5,5,5,5,5,5,5,5,5,]),'=':([41,],[43,]),'$end':([0,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,31,32,33,34,35,36,37,38,41,42,44,],[-6,-27,-24,-20,-2,-26,-5,0,-8,-18,-10,-22,-14,-7,-11,-25,-1,-23,-19,-23,-17,-15,-16,-21,-12,-13,-4,-3,-28,-28,-9,]),'%':([1,2,3,5,10,12,16,18,19,20,34,41,42,],[-27,-24,-20,-26,21,-22,-25,-23,-19,-23,-21,-28,-28,]),';':([1,2,3,5,6,9,10,11,12,13,14,15,16,17,18,19,20,31,32,33,34,35,36,37,38,41,42,44,],[-27,-24,-20,-26,-5,-8,-18,-10,-22,-14,-7,-11,-25,27,-23,-19,-23,-17,-15,-16,-21,-12,-13,-4,-3,-28,-28,-9,]),'*':([1,2,3,5,10,12,16,18,19,20,34,41,42,],[-27,-24,-20,-26,22,-22,-25,-23,-19,-23,-21,-28,-28,]),'-':([0,1,2,3,5,7,10,12,13,16,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,41,42,43,],[7,-27,-24,-20,-26,7,-18,-22,26,-25,-23,-19,-23,7,7,7,7,7,7,7,7,7,7,-17,-15,-16,-21,-28,-28,7,]),'^':([1,2,5,12,16,18,20,41,42,],[-27,-24,-26,24,-25,-23,-23,-28,-28,]),'\n':([1,2,3,5,6,9,10,11,12,13,14,15,16,17,18,19,20,31,32,33,34,35,36,37,38,41,42,44,],[-27,-24,-20,-26,-5,-8,-18,-10,-22,-14,-7,-11,-25,28,-23,-19,-23,-17,-15,-16,-21,-12,-13,-4,-3,-28,-28,-9,]),'(':([5,18,20,],[-26,29,30,]),'/':([1,2,3,5,10,12,16,18,19,20,34,41,42,],[-27,-24,-20,-26,23,-22,-25,-23,-19,-23,-21,-28,-28,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression_statement':([0,19,],[7,7,]),'statement':([0,19,],[11,29,]),'expression':([0,19,21,35,40,],[2,2,31,39,42,]),'factor':([0,13,19,20,21,22,23,24,27,28,35,40,],[12,25,12,30,12,12,12,12,12,12,12,12,]),'arith_expr':([0,19,21,27,28,35,40,],[3,3,3,36,37,3,3,]),'power':([0,13,19,20,21,22,23,24,27,28,35,40,],[6,6,6,6,6,6,6,6,6,6,6,6,]),'statements':([0,],[5,]),'term':([0,19,21,22,23,24,27,28,35,40,],[14,14,14,32,33,34,14,14,14,14,]),'number':([0,13,19,20,21,22,23,24,27,28,35,40,],[15,15,15,15,15,15,15,15,15,15,15,15,]),'variable':([0,13,19,20,21,22,23,24,27,28,35,40,],[10,26,10,26,26,26,26,26,26,26,26,26,]),'sequence_assignment':([0,19,],[16,16,]),'atom':([0,13,19,20,21,22,23,24,27,28,35,40,],[8,8,8,8,8,8,8,8,8,8,8,8,]),'function_call':([0,13,19,20,21,22,23,24,27,28,35,40,],[4,4,4,4,4,4,4,4,4,4,4,4,]),'program':([0,],[1,]),'empty':([0,],[18,]),}
+_lr_goto_items = {'number':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[2,2,2,2,2,2,2,2,2,2,2,2,2,]),'factor':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[10,19,10,10,10,34,10,10,10,10,10,10,10,]),'expression':([0,27,28,29,30,43,],[11,11,11,39,40,44,]),'term':([0,21,22,23,25,26,27,28,29,30,43,],[13,31,32,33,13,13,13,13,13,13,13,]),'empty':([0,],[4,]),'sequence_assignment':([0,27,28,],[14,14,14,]),'program':([0,],[8,]),'arith_expr':([0,25,26,27,28,29,30,43,],[15,35,36,15,15,15,15,15,]),'atom':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[12,12,12,12,12,12,12,12,12,12,12,12,12,]),'variable':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[18,20,20,20,20,20,20,20,18,18,20,20,20,]),'statement':([0,27,28,],[6,37,38,]),'function_call':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[16,16,16,16,16,16,16,16,16,16,16,16,16,]),'power':([0,7,21,22,23,24,25,26,27,28,29,30,43,],[3,3,3,3,3,3,3,3,3,3,3,3,3,]),'statements':([0,],[17,]),'expression_statement':([0,27,28,],[9,9,9,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -29,28 +29,29 @@ _lr_productions = [
   ('program -> statements','program',1,'p_program','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',31),
   ('program -> empty','program',1,'p_program','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',32),
   ('statements -> statements \n statement','statements',3,'p_statements','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',37),
-  ('statements -> statement','statements',1,'p_statements','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',38),
-  ('empty -> <empty>','empty',0,'p_empty','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',46),
-  ('statement -> sequence_assignment','statement',1,'p_statement','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',50),
-  ('statement -> expression_statement','statement',1,'p_statement','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',51),
-  ('sequence_assignment -> variable ( expression ) = expression','sequence_assignment',6,'p_sequence_assignment','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',55),
-  ('expression_statement -> expression','expression_statement',1,'p_expression_statement','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',59),
-  ('expression -> arith_expr','expression',1,'p_expression','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',63),
-  ('arith_expr -> term + arith_expr','arith_expr',3,'p_arith_expr','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',67),
-  ('arith_expr -> term - arith_expr','arith_expr',3,'p_arith_expr','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',68),
-  ('arith_expr -> term','arith_expr',1,'p_arith_expr','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',69),
-  ('term -> factor * term','term',3,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',78),
-  ('term -> factor / term','term',3,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',79),
-  ('term -> factor % term','term',3,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',80),
-  ('term -> factor','term',1,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',81),
-  ('factor -> - factor','factor',2,'p_factor','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',90),
-  ('factor -> power','factor',1,'p_factor','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',91),
-  ('power -> atom ^ factor','power',3,'p_power','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',98),
-  ('power -> atom','power',1,'p_power','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',99),
-  ('atom -> variable','atom',1,'p_atom','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',106),
-  ('atom -> number','atom',1,'p_atom','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',107),
-  ('atom -> function_call','atom',1,'p_atom','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',108),
-  ('variable -> IDENTIFIER','variable',1,'p_variable','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',112),
-  ('number -> NUMBER','number',1,'p_number','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',116),
-  ('function_call -> variable ( expression )','function_call',4,'p_function_call','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',120),
+  ('statements -> statements ; statement','statements',3,'p_statements','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',38),
+  ('statements -> statement','statements',1,'p_statements','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',39),
+  ('empty -> <empty>','empty',0,'p_empty','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',47),
+  ('statement -> sequence_assignment','statement',1,'p_statement','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',51),
+  ('statement -> expression_statement','statement',1,'p_statement','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',52),
+  ('sequence_assignment -> variable ( expression ) = expression','sequence_assignment',6,'p_sequence_assignment','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',56),
+  ('expression_statement -> expression','expression_statement',1,'p_expression_statement','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',60),
+  ('expression -> arith_expr','expression',1,'p_expression','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',64),
+  ('arith_expr -> term + arith_expr','arith_expr',3,'p_arith_expr','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',68),
+  ('arith_expr -> term - arith_expr','arith_expr',3,'p_arith_expr','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',69),
+  ('arith_expr -> term','arith_expr',1,'p_arith_expr','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',70),
+  ('term -> factor * term','term',3,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',79),
+  ('term -> factor / term','term',3,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',80),
+  ('term -> factor % term','term',3,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',81),
+  ('term -> factor','term',1,'p_term','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',82),
+  ('factor -> - factor','factor',2,'p_factor','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',91),
+  ('factor -> power','factor',1,'p_factor','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',92),
+  ('power -> atom ^ factor','power',3,'p_power','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',99),
+  ('power -> atom','power',1,'p_power','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',100),
+  ('atom -> variable','atom',1,'p_atom','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',107),
+  ('atom -> number','atom',1,'p_atom','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',108),
+  ('atom -> function_call','atom',1,'p_atom','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',109),
+  ('variable -> IDENTIFIER','variable',1,'p_variable','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',113),
+  ('number -> NUMBER','number',1,'p_number','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',117),
+  ('function_call -> variable ( expression )','function_call',4,'p_function_call','C:\\Users\\Kevin\\Desktop\\Codegolf\\Sequencer\\src\\s_parser.py',121),
 ]

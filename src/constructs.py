@@ -27,7 +27,7 @@ class SequenceAssignment(Statement):
                 exit("{} is not a sequence".format(self.identifier))
         else:
             sequence = Sequence()
-            env.put_local(self.identifier, sequence)
+            env.put(self.identifier, sequence)
 
         sequence.add_pattern(self.pattern, self.assignment)
 
@@ -44,6 +44,9 @@ class Number(Expression):
     def __init__(self, value):
         self.value = sympy.sympify(value)
 
+    def __repr__(self):
+        return str(self.value)
+
     def evaluate(self, env):
         return self.value
 
@@ -51,6 +54,9 @@ class Number(Expression):
 class Variable(Expression):
     def __init__(self, identifier):
         self.identifier = identifier
+
+    def __repr__(self):
+        return str(self.identifier)
 
     def evaluate(self, env):
         if self.identifier in env:

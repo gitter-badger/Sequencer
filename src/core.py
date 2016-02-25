@@ -3,16 +3,27 @@ import sys
 
 import sympy
 
-class Sequence():
+class Function():
+    def __call__(self, env, args):
+        env.enter_scope()
+        result = self.call(env, args)
+        env.exit_scope()
+        return result
+
+    def call(self, env, args):
+        raise NotImplementedError
+
+class Sequence(Function):
     def __init__(self, offset=1):
         self.offset = offset
         self.pattern_to_assignment = []
 
 
-    def __call__(self, env, index):
-        if isinstance(index, list):
-            index = index[0]
-
+    def call(self, env, args):
+        # TODO: Make it work for multiple args.
+        assert len(args) == 1
+        index = args[0]
+        
         # Reverse since we want later patterns to take priority
         for pattern, assignment in reversed(self.pattern_to_assignment):
             try:
@@ -36,14 +47,16 @@ class Sequence():
                 if solution.is_integer:
                     integer_solutions.append(solution)
 
-                elif solution is None:
-                    # TODO: Handle this case.
+                elif solution.is_integer is None:
+                    sys.stderr.write("Warning: Couldn't tell whether pattern solution was integral")
                     pass
 
             if integer_solutions:
                 # Return the smallest nonnegative solution if possible
-                result = assignment.evaluate(env).subs('n',
-                          sorted(integer_solutions, key=lambda n: (0, n) if n >= 0 else (1, -n))[0])
+                principal_solution = sorted(integer_solutions, key=lambda n: (0, n) if n >= 0 else (1, -n))[0]
+                symbol = list(pattern.free_symbols)[0]
+                env.put(str(symbol), principal_solution)
+                result = assignment.evaluate(env).subs(symbol, principal_solution)
                 return result
 
         return sympy.sympify(0)
@@ -55,11 +68,9 @@ class Sequence():
 
 class Environment():
     def __init__(self):
-        self.globals = {
+        self.vars = [{
             'print': macros.s_print
-        }
-
-        self.locals = [{}]
+        }]
 
     def __contains__(self, identifier):
         return self.has(identifier)
@@ -69,31 +80,31 @@ class Environment():
 
     def __repr__(self):
         # For debugging purposes.
-        return repr(self.globals) + "\n" + repr(self.locals)
+        return repr(self.vars)
 
     def get(self, identifier):
-        if identifier in self.locals[-1]:
-            return self.locals[-1][identifier]
+        if identifier in self.vars[-1]:
+            return self.vars[-1][identifier]
 
-        if identifier in self.globals:
-            return self.globals[identifier]
+        if identifier in self.vars[0]:
+            return self.vars[0][identifier]
 
         exit("{} not in scope".format(identifier))
 
     def has(self, identifier):
-        return identifier in self.locals[-1] or identifier in self.globals
+        return identifier in self.vars[-1] or identifier in self.vars[0]
 
     def put_global(self, identifier, item):
-        self.globals[identifier] = item
+        self.vars[0][identifier] = item
 
-    def put_local(self, identifier, item):
-        self.locals[-1][identifier] = item
+    def put(self, identifier, item):
+        self.vars[-1][identifier] = item
 
     def enter_scope(self):
-        self.locals.append({})
+        self.vars.append({})
 
     def exit_scope(self):
-        self.locals.pop()
+        self.vars.pop()
 
 
 # TODO: Fix circular dependency.

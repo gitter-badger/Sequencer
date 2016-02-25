@@ -9,7 +9,7 @@ def s_print(env, args):
             i = arg.offset
 
             while True:
-                print(normalise_output(arg(env, i)))
+                print(normalise_output(arg(env, [i])))
                 i += 1
 
         else:
